@@ -68,7 +68,7 @@ public class Scrape
     final String QUERY = "?CLOCATION=Study%20at%20RMIT%2F&QRY=%2Btype%3Dflexible%20%2Bsubtype%3Dheparta%20%2Bkeywords%3D(" + URLEncoder.encode(query, "utf-8") + ")%20&STYPE=ENTIRE";
 
     // open database
-    Connection conn = DriverManager.getConnection("jdbc:sqlite:rmit.db");
+    Connection conn = DriverManager.getConnection("jdbc:sqlite:db/rmit.db");
     Statement stat = conn.createStatement();
     stat.executeUpdate("drop table if exists course");
     stat.executeUpdate("drop table if exists offering");

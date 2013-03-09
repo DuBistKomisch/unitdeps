@@ -3,6 +3,7 @@ JX = java
 SRC = src
 BIN = bin
 LIB = lib
+DB = db
 JARGS = -cp ${BIN}:${LIB}/*
 
 SOURCES = ${wildcard ${SRC}/*.java}
@@ -16,8 +17,12 @@ ${CLASSES}: ${BIN}/%.class:${SRC}/%.java
 	@mkdir -p ${BIN}
 	${JC} ${JARGS} -d ${BIN} ${SRC}/$*.java
 
-# generate ptv.db
-rmit: all
+edit_rmit: all
+	${JX} ${JARGS} Editor ${DB}/rmit.db
+
+# generate rmit.db
+scrape_rmit: all
+	@mkdir -p ${DB}
 	${JX} ${JARGS} Scrape rmit cosc????
 
 # delete compiled files
@@ -26,7 +31,7 @@ clean:
 
 # delete database
 cleandb:
-	rm -f *.db
+	rm -rf ${DB}
 
 # print total line count (for funz)
 lines:
